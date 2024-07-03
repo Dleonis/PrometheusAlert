@@ -288,6 +288,9 @@ func AlertRouterSet(xalert map[string]interface{}, PMsg PrometheusAlertMsg, Tpl 
 			//百度Hi(如流)
 			case "rl":
 				PMsg.GroupId = router_value.UrlOrPhone
+			//企业微信应用
+			case "workwechat":
+				PMsg.ToUser = router_value.UrlOrPhone
 			//短信、电话
 			case "txdx", "hwdx", "bddx", "alydx", "txdh", "alydh", "rlydh", "7moordx", "7moordh":
 				PMsg.Phone = router_value.UrlOrPhone

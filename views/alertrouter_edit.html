@@ -267,11 +267,12 @@ function typeChange(){
 	document.getElementById("Party").style.display="none";
 	document.getElementById("Tag").style.display="none";
  } else if(tpltype.value=="workwechat"){
-    alert("workwechat暂不支持告警路由，待后期开启!");
-	/*typeStr.innerText="接受用户";
+	// alert("workwechat暂不支持告警路由，待后期开启!");
+	typeStr.innerText="接受用户(多个请以|隔开)";
+	document.getElementById("Purl").style.display="";
 	document.getElementById("Pat").style.display="none";
-	document.getElementById("Party").style.display="";
-	document.getElementById("Tag").style.display="";*/
+	document.getElementById("Party").style.display="none";
+	document.getElementById("Tag").style.display="none";
 	
  } else{
 	typeStr.innerText="手机号(多个请以,隔开)";

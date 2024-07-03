@@ -20,6 +20,7 @@ func SendWorkWechat(touser, toparty, totag, msg, logsign string) string {
 	cropid := beego.AppConfig.String("WorkWechat_CropID")
 	agentid, _ := beego.AppConfig.Int64("WorkWechat_AgentID")
 	agentsecret := beego.AppConfig.String("WorkWechat_AgentSecret")
+	msg_type := beego.AppConfig.String("WorkWechat_Msgtype")
 
 	//touser := beego.AppConfig.String("WorkWechat_ToUser")
 	//toparty := beego.AppConfig.String("WorkWechat_ToParty")
@@ -30,6 +31,7 @@ func SendWorkWechat(touser, toparty, totag, msg, logsign string) string {
 		AgentID:     agentid,
 		AgentSecret: agentsecret,
 	}
+
 	workwxmsg := workwxbot.Message{
 		ToUser:   touser,
 		ToParty:  toparty,
@@ -37,6 +39,12 @@ func SendWorkWechat(touser, toparty, totag, msg, logsign string) string {
 		MsgType:  "markdown",
 		Markdown: workwxbot.Content{Content: msg},
 	}
+
+	if msg_type == "text" {
+		workwxmsg.MsgType = "text"
+		workwxmsg.Text = workwxbot.Content{Content: msg}
+	}
+
 	if err := workwxapi.Send(workwxmsg); err != nil {
 		logs.Error(logsign, "[workwechat]", err.Error())
 	}
